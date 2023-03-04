@@ -1,15 +1,40 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <header>
+      <h1>じゃんけんゲーム</h1>
+    </header>
+    <base-button mode="outline" link to="/game">ゲーム</base-button>
+    <base-button mode="outline" link to="/score">スコア</base-button>
+    <main>
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return{
+      scores:[]
+    }
+  },
+  provide(){
+    return{
+      getResult:this.getResult,
+      scores:this.scores
+    }
+  },
+  methods:{
+    getResult(){
+      const localData=JSON.parse(localStorage.getItem('janken'))
+      if(!localData){
+        return
+      }
+      this.scores.splice(0,this.scores.length)
+      for(const data of localData){
+        this.scores.push(data)
+      }
+    }
   }
 }
 </script>
@@ -22,5 +47,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+h1,h2{
+  font-weight: bold;
+  margin: 10px 0;
 }
 </style>
