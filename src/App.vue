@@ -4,15 +4,17 @@
     <main>
       <router-view></router-view>
     </main>
+    <the-footer></the-footer>
   </div>
 </template>
 
 <script>
 import TheHeader from './components/layout/TheHeader.vue';
-
+import TheFooter from './components/layout/TheFooter.vue';
 export default {
   components:{
-    TheHeader
+    TheHeader,
+    TheFooter
   }
 }
 </script>
@@ -29,4 +31,29 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+ul{
+  padding: 0;
+  margin: none;
+}
+li{
+  list-style: none;
+}
+
+.section {
+  padding: 20px 0;
+}
+.wrapper {
+  width: 85%;
+  margin: 0 auto;
+  text-align: center;
+}
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  display: inline-block;
+  border-bottom: 3px solid #333;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
 </style>
