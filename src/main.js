@@ -1,22 +1,25 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
-// import router from './router.js'
-
 import App from "./App.vue";
+import ProfilePage from './pages/ProfilePage.vue'
+import AboutPage from './pages/AboutPage.vue'
+import WorksPage from './pages/WorksPage.vue'
+import ContactPage from './pages/ContactPage.vue'
 
-import GameView from "./components/GameView.vue";
-import ScoreView from "./components/ScoreView.vue";
+
 import BaseButton from "./components/UI/BaseButton.vue";
 import BaseCard from "./components/UI/BaseCard.vue";
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", redirect: "/game" },
-    { path: "/game", component: GameView },
-    { path: "/score", component: ScoreView },
-    {path:'/notFound(.*)',redirect:'/game'}
+    {path:'/',redirect:'/profile'},
+    {path:'/profile', component:ProfilePage},
+    {path:'/about',component:AboutPage},
+    {path:'/works',component:WorksPage},
+    {path:'/contact',component:ContactPage},
+    {path:'/notFound(.*)',redirect:'/profile'}
   ],
   linkActiveClass:'active'
 });

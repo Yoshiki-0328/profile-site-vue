@@ -1,10 +1,6 @@
 <template>
   <div>
-    <header>
-      <h1>じゃんけんゲームプル</h1>
-    </header>
-    <base-button mode="outline" link to="/game">ゲーム</base-button>
-    <base-button mode="outline" link to="/score">スコア</base-button>
+    <the-header></the-header>
     <main>
       <router-view></router-view>
     </main>
@@ -12,45 +8,25 @@
 </template>
 
 <script>
+import TheHeader from './components/layout/TheHeader.vue';
+
 export default {
-  data(){
-    return{
-      scores:[]
-    }
-  },
-  provide(){
-    return{
-      getResult:this.getResult,
-      scores:this.scores
-    }
-  },
-  methods:{
-    getResult(){
-      const localData=JSON.parse(localStorage.getItem('janken'))
-      if(!localData){
-        return
-      }
-      this.scores.splice(0,this.scores.length)
-      for(const data of localData){
-        this.scores.push(data)
-      }
-    }
+  components:{
+    TheHeader
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text&family=Lora:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap");
+#app{
+  font-family: "Crimson Text", serif;
+  font-family: "Lora", serif;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1,h2{
-  font-weight: bold;
-  margin: 10px 0;
 }
 </style>
