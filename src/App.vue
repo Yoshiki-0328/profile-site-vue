@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <h1>じゃんけんゲーム</h1>
+      <h1>じゃんけんゲームプル</h1>
     </header>
     <base-button mode="outline" link to="/game">ゲーム</base-button>
     <base-button mode="outline" link to="/score">スコア</base-button>
