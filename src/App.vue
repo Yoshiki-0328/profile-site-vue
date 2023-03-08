@@ -38,6 +38,9 @@ ul{
 li{
   list-style: none;
 }
+a{
+  text-decoration: none;
+}
 
 .section {
   padding: 20px 0;

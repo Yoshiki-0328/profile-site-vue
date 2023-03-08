@@ -32,18 +32,20 @@
 }
 .form-flex dd {
   text-align: left;
-  width: 72%;
+  width: 80%;
   margin-bottom: 15px;
+  margin-left: 0;
 }
 .contact-content input,
 .contact-content textarea {
   border: 1px solid #999;
-  width: 80%;
-  padding: 10px;
+  width: 100%;
+  padding: 10px 0px;
   border-radius: 3px;
+  margin-left: 40px;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 660px) {
   .form-flex {
     flex-direction: column;
     width: 100%;
@@ -52,14 +54,13 @@
   width: 100%;
 }
 .form-flex dd {
-  width: 100%;
-  margin-bottom: 20px;
-  margin-left: 0px;
+  width: 80%;
+  margin: 0px auto 20px;
 }
-
 .contact-content input,
 .contact-content textarea {
   width: 100%;
+  margin: 0;
 }
 }
 </style>

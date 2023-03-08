@@ -5,7 +5,7 @@
       <nav class="nav">
         <base-button mode="flat" link to="/profile">Profile</base-button>
         <base-button mode="flat" link to="/about">About/Skills</base-button>
-        <base-button mode="flat" link to="/works">Works</base-button>
+        <base-button mode="flat" link to="/works">Portfolio</base-button>
         <base-button mode="flat" link to="/contact">Contact</base-button>
       </nav>
       <div class="hamBtn" @click="open = !open" :class="{'is-active' : open}">
@@ -18,7 +18,7 @@
         <nav class="hamNav" >
             <base-button mode="flat" link to="/profile" @click="open = !open">Profile</base-button>
             <base-button mode="flat" link to="/about" @click="open = !open">About/Skills</base-button>
-            <base-button mode="flat" link to="/works" @click="open = !open">Works</base-button>
+            <base-button mode="flat" link to="/works" @click="open = !open">Portfolio</base-button>
             <base-button mode="flat" link to="/contact" @click="open = !open">Contact</base-button>
         </nav>
     </div>
@@ -40,6 +40,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+h1{
+  font-size: 2.0rem;
 }
 .hamBtn {
   width: 40px;

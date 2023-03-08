@@ -1,12 +1,12 @@
 <template>
     <footer class="footer">
         <div class="wrapper">
-        <ul class="flex footer-flex">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+          <div>
+            <base-button mode="flat" link to="/profile">Profile</base-button>
+            <base-button mode="flat" link to="/about">About/Skills</base-button>
+            <base-button mode="flat" link to="/works">Works</base-button>
+            <base-button mode="flat" link to="/contact">Contact</base-button>
+          </div>
         <small>&copy;2022 Yoshiki</small>
     </div>
 
@@ -16,20 +16,8 @@
 </template>
 
 <style scoped>
-.footer-flex {
-  justify-content: center;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-}
-.footer-flex li {
-  margin-left: 20px;
-}
-.footer-flex a {
-  text-decoration: none;
-  color: #333;
-}
-.footer-flex a:hover {
-  opacity: .7;
+a{
+  font-size: .85rem;
+  padding: 7.5px 15px;
 }
 </style>
