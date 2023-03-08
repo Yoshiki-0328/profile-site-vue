@@ -18,7 +18,7 @@
 <style scoped>
 .footer-flex {
   justify-content: center;
-  margin: 0px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
 }
@@ -28,5 +28,8 @@
 .footer-flex a {
   text-decoration: none;
   color: #333;
+}
+.footer-flex a:hover {
+  opacity: .7;
 }
 </style>

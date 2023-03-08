@@ -18,14 +18,14 @@ h1{
     font-weight: bold;
     width: 100%;
     text-shadow: 10px 10px 50px #999;
-    
+    z-index: 0;
 }
 .main-visual {
   width: 100%;
 }
 .main-visual img {
   width: 100%;
-  height: 80vh;
+  height: 85vh;
   object-fit: cover;
 }
 </style>
