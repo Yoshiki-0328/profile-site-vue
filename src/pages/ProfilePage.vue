@@ -1,7 +1,7 @@
 <template>
     <section>
-        <h1>Profile Page</h1>
-        <div class="main-visual">
+      <div class="main-visual">
+          <h1>Profile Page</h1>
             <img src="../assets/mainvisual.jpg" alt="メイン画像" />
         </div>
     </section>
@@ -10,9 +10,9 @@
 <style scoped>
 h1{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-75%);
+    /* top: 50%; */
+    /* left: 50%; */
+    transform: translateY(70%);
     color: white;
     font-size: 100px;
     font-weight: bold;

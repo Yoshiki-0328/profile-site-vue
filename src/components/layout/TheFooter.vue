@@ -2,7 +2,7 @@
     <footer class="footer">
         <div class="wrapper">
           <div>
-            <base-button mode="flat" link to="/profile">Profile</base-button>
+            <base-button mode="flat" link to="/profile">Home</base-button>
             <base-button mode="flat" link to="/about">About/Skills</base-button>
             <base-button mode="flat" link to="/works">Works</base-button>
             <base-button mode="flat" link to="/contact">Contact</base-button>
@@ -16,6 +16,9 @@
 </template>
 
 <style scoped>
+.footer{
+  margin-top: 40px;
+}
 a{
   font-size: .85rem;
   padding: 7.5px 15px;

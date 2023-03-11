@@ -1,6 +1,6 @@
 <template>
   <div>
-    <base-card>
+      <base-card>
       <section class="section">
         <div class="wrapper">
           <h2 class="section-title">About</h2>
@@ -97,6 +97,7 @@ export default {
       ],
     };
   },
+
 };
 </script>
 
