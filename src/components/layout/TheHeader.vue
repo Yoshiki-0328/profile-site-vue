@@ -37,6 +37,7 @@ export default {
 
 <style scoped>
 header {
+  padding: 0px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
