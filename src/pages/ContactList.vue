@@ -8,6 +8,7 @@
                 <li v-for="contact in contacts" :key="contact.key">
                     <base-card>
                     <p>date  :  {{ contact.date }}</p>
+                    <p>email :  {{ contact.email }}</p>
                     <p>Name  :  {{ contact.name }}</p>
                     <p>Message  :  {{ contact.message }}</p>
                 </base-card>
