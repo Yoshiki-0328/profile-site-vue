@@ -28,4 +28,10 @@ h1{
   height: 85vh;
   object-fit: cover;
 }
+
+@media(max-width:610px){
+  h1{
+    transform: translateY(20%);
+  }
+}
 </style>

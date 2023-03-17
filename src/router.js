@@ -5,6 +5,7 @@ const ProfilePage =defineAsyncComponent(()=>import('./pages/ProfilePage.vue'))
 const AboutPage = defineAsyncComponent(()=>import('./pages/AboutPage.vue'))
 const WorksPage = defineAsyncComponent(()=>import('./pages/WorksPage.vue'))
 const ContactPage = defineAsyncComponent(()=>import('./pages/ContactPage.vue'))
+const ContactList = defineAsyncComponent(()=>import('./pages/ContactList.vue'))
 import TheFooter from './components/layout/TheFooter.vue'
 
 
@@ -19,6 +20,8 @@ const router = createRouter({
       components:{default:WorksPage,footer:TheFooter}},
       {path:'/contact',
       components:{default:ContactPage,footer:TheFooter}},
+      {path:'/contact-list',
+      components:{default:ContactList,footer:TheFooter}},
       {path:'/notFound(.*)',redirect:'/profile'}
     ],
     linkActiveClass:'active'

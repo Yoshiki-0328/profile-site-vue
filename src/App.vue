@@ -32,7 +32,6 @@ export default {
   mounted(){
     setTimeout(()=>{
       this.isLoading=false;
-      console.log('view')
     },1000)
   }
 };

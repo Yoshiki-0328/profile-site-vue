@@ -3,7 +3,7 @@
     <div class="wrapper">
       <h2 class="section-title">Contact</h2>
       <div class="contact-content">
-        <form @submit="submitData" class="form-flex">
+        <form @submit.prevent="submitData" class="form-flex">
           <dt>NAME</dt>
           <dd><input type="text" name="name" id="name" v-model="name" /></dd>
           <dt>E-mail</dt>
@@ -22,6 +22,7 @@
           </dd>
           <base-button> SEND </base-button>
         </form>
+        <base-button class="contact-list" mode="flat" link to="/contact-list">Contact List</base-button>
       </div>
     </div>
   </section>
@@ -38,6 +39,14 @@ export default {
   },
   methods: {
     submitData() {
+      const now = new Date()
+      const Year = now.getFullYear();
+      const Month = now.getMonth()+1;
+      const Day = now.getDate();
+      const Hour = now.getHours();
+      const Min = now.getMinutes();
+      const nowTime = Year + "年" + Month + "月" + Day + "日" + Hour + ":" + Min
+      console.log(nowTime)
       fetch(
         "https://profile-site-a91ed-default-rtdb.firebaseio.com/contact.json",
         {
@@ -46,17 +55,20 @@ export default {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            date:nowTime,
             name: this.name,
             email: this.email,
             message: this.message,
           }),
         }
       ).then((response)=>{
-        if(!response.ok){
+        if(response.ok){
+          console.log(response)
+        }else{
           throw new Error('サーバーへの送信に失敗しました')
         }
-      }).catch((e)=>{
-        alert(e.message)
+      }).catch((error)=>{
+        console.log(error.message)
       })
 
 
@@ -99,9 +111,13 @@ button {
   padding: 5px;
   border-radius: 3px;
   font-size: 1.25rem;
+  margin-left: 0 !important;
   font-family: "Crimson Text", serif;
   font-family: "Lora", serif;
   font-family: "Noto Sans JP", sans-serif;
+}
+.contact-list{
+  margin-right: 0;
 }
 
 @media (max-width: 660px) {
@@ -115,6 +131,7 @@ button {
   .form-flex dd {
     width: 80%;
     margin: 0px auto 20px;
+    padding-left: 0;
   }
   .contact-content input,
   .contact-content textarea {

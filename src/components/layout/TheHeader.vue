@@ -110,7 +110,7 @@ h1{
 .hamBtn span:last-child {
     top: 35.5px;
 }
-@media (max-width: 660px) {
+@media (max-width: 690px) {
     .hamBtn{
         display: block;
     }
