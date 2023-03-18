@@ -10,8 +10,6 @@
 <style scoped>
 h1{
     position: absolute;
-    /* top: 50%; */
-    /* left: 50%; */
     transform: translateY(70%);
     color: white;
     font-size: 100px;

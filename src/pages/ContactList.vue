@@ -21,47 +21,18 @@
   
   <script>
   export default {
-    data() {
-      return {
-        contacts:""
-      };
+    computed:{
+      contacts(){
+        return this.$store.getters['contacts/contacts']
+      }
     },
     created(){
         this.getData()
     },
     methods: {
-      getData() {
-        fetch(
-          "https://profile-site-a91ed-default-rtdb.firebaseio.com/contact.json",
-          {
-            method: "GET",
-          }
-        ).then((response)=>{
-          if(!response.ok){
-            throw new Error('サーバーへの受信に失敗しました')
-          }else{
-            return response.json();
-          }
-        }).then((data)=>{
-            console.log(data)
-            const contacts =[]
-
-            for(const key in data){
-                const contact ={
-                    id:key,
-                    date:data[key].date,
-                    name:data[key].name,
-                    email:data[key].email,
-                    message:data[key].message
-                }
-                contacts.unshift(contact);
-            }
-            this.contacts=contacts
-        }).catch((e)=>{
-          alert(e.message)
-        })
-  
-      },
+      getData(){
+        this.$store.dispatch('contacts/getData')
+      }
     },
   };
   </script>

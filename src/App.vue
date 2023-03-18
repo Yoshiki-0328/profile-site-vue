@@ -101,4 +101,9 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+@media (max-width:600px){
+  body{
+    padding: 3px;
+  }
+}
 </style>
