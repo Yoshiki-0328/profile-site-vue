@@ -12,17 +12,12 @@
           </dd>
           <dt>MESSAGE</dt>
           <dd>
-            <textarea
-              name="message"
-              id="message"
-              cols="30"
-              rows="5"
-              v-model="message"
-            ></textarea>
+            <textarea name="message" id="message" cols="30" rows="5" v-model="message"></textarea>
           </dd>
           <base-button> SEND </base-button>
         </form>
-        <base-button class="contact-list" mode="flat" link to="/contact-list">Contact List</base-button>
+        <base-button class="contact-list" mode="flat" link to="/contact-list"
+          >Contact List</base-button>
       </div>
     </div>
   </section>
@@ -39,39 +34,22 @@ export default {
   },
   methods: {
     submitData() {
-      const now = new Date()
+      const now = new Date();
       const Year = now.getFullYear();
-      const Month = now.getMonth()+1;
+      const Month = now.getMonth() + 1;
       const Day = now.getDate();
       const Hour = now.getHours();
       const Min = now.getMinutes();
-      const nowTime = Year + "年" + Month + "月" + Day + "日" + Hour + ":" + Min
-      console.log(nowTime)
-      fetch(
-        "https://profile-site-a91ed-default-rtdb.firebaseio.com/contact.json",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            date:nowTime,
-            name: this.name,
-            email: this.email,
-            message: this.message,
-          }),
-        }
-      ).then((response)=>{
-        if(response.ok){
-          console.log(response)
-        }else{
-          throw new Error('サーバーへの送信に失敗しました')
-        }
-      }).catch((error)=>{
-        console.log(error.message)
-      })
-
-
+      const nowTime =
+        Year + "年" + Month + "月" + Day + "日" + Hour + ":" + Min;
+      console.log(nowTime);
+      const inputData = {
+        date: nowTime,
+        name: this.name,
+        email: this.email,
+        message: this.message,
+      };
+      this.$store.dispatch("contacts/submitData", inputData);
       this.name = "";
       this.email = "";
       this.message = "";
@@ -116,7 +94,7 @@ button {
   font-family: "Lora", serif;
   font-family: "Noto Sans JP", sans-serif;
 }
-.contact-list{
+.contact-list {
   margin-right: 0;
 }
 
