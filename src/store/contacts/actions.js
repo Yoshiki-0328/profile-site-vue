@@ -13,6 +13,7 @@ export default{
         ).then((response)=>{
           if(response.ok){
             console.log(response)
+            alert('送信完了しました。')
           }else{
             throw new Error('サーバーへの送信に失敗しました')
           }
@@ -50,4 +51,23 @@ export default{
           alert(e.message)
         })
       },
+
+    //FIREBASE通信（コンタクトリスト削除）
+    async deleteData(_,payload){
+      await fetch(`https://profile-site-a91ed-default-rtdb.firebaseio.com/contact/${payload}.json`,{
+        method:"DELETE",
+        headers: {
+            "Content-Type": "application/json",
+          },
+      }).then((response)=>{
+        console.log("1")
+        if(!response.ok){
+          throw new Error('サーバーへの通信に失敗しました')
+        }else{
+          return response.json();
+        }
+      }).catch((e)=>{
+        alert(e.message)
+      })
+    }
 }

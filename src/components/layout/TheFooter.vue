@@ -19,8 +19,14 @@
 .footer{
   margin-top: 40px;
 }
-a{
-  font-size: .85rem;
+a.flat{
+  font-size: .9rem;
   padding: 7.5px 15px;
+}
+@media (max-width:610px){
+  a.flat{
+    font-size: .75rem;
+    margin: 0;
+  }
 }
 </style>
