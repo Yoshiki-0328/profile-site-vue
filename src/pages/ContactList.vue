@@ -36,9 +36,13 @@ export default {
     this.getData();
   },
   methods: {
-    getData() {
-      this.$store.dispatch("contacts/getData");
-      console.log("2");
+    async getData() {
+      try{
+        await this.$store.dispatch("contacts/getData");
+      }catch(e){
+        alert(e.message)
+      }
+      console.log("データを取得しに行きます。");
     },
     async deleteData(id) {
       await this.$store.dispatch("contacts/deleteData", id);
@@ -52,14 +56,15 @@ export default {
   <style scoped>
 li {
   text-align: left;
+}
+.card{
   position: relative;
 }
-
 .deleteBtn {
   margin: 0px auto;
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 10px;
+  top: 10px;
 }
 
 @media (max-width: 660px) {
@@ -68,10 +73,7 @@ li {
   }
   .deleteBtn {
     font-size: 0.75rem;
-    margin: 0px auto;
-    position: absolute;
-    right: 20px;
-    top: 20px;
+
   }
 }
 </style>

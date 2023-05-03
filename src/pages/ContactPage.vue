@@ -4,13 +4,13 @@
       <h2 class="section-title">Contact</h2>
       <div class="contact-content">
         <form @submit.prevent="submitData" class="form-flex">
-          <dt>NAME</dt>
+          <dt>Name</dt>
           <dd><input type="text" name="name" id="name" v-model="name" /></dd>
           <dt>E-mail</dt>
           <dd>
             <input type="email" name="email" id="email" v-model="email" />
           </dd>
-          <dt>MESSAGE</dt>
+          <dt>Message</dt>
           <dd>
             <textarea name="message" id="message" cols="30" rows="5" v-model="message"></textarea>
           </dd>
@@ -33,7 +33,7 @@ export default {
     };
   },
   methods: {
-    submitData() {
+    async submitData() {
       const now = new Date();
       const Year = now.getFullYear();
       const Month = now.getMonth() + 1;
@@ -49,7 +49,11 @@ export default {
         email: this.email,
         message: this.message,
       };
-      this.$store.dispatch("contacts/submitData", inputData);
+      try{
+        await this.$store.dispatch("contacts/submitData", inputData);
+      }catch(e){
+        alert(e.message)
+      }
       this.name = "";
       this.email = "";
       this.message = "";

@@ -1,73 +1,73 @@
-export default{
-    //FIREBASE通信（コンタクトデータ送信）
-    submitData(_,payload) {
-        fetch(
-          "https://profile-site-a91ed-default-rtdb.firebaseio.com/contact.json",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-          }
-        ).then((response)=>{
-          if(response.ok){
-            console.log(response)
-            alert('送信完了しました。')
-          }else{
-            throw new Error('サーバーへの送信に失敗しました')
-          }
-        }).catch((error)=>{
-          console.log(error.message)
-        })
-    },
-
-    //FIREBASE通信（コンタクトリスト取得）
-    getData(context) {
-        fetch(
-          "https://profile-site-a91ed-default-rtdb.firebaseio.com/contact.json",
-          {method: "GET"}
-        ).then((response)=>{
-          if(!response.ok){
-            throw new Error('サーバーへの受信に失敗しました')
-          }else{
-            return response.json();
-          }
-        }).then((data)=>{
-            console.log(data)
-            const contacts =[]
-            for(const key in data){
-                const contact ={
-                    id:key,
-                    date:data[key].date,
-                    name:data[key].name,
-                    email:data[key].email,
-                    message:data[key].message
-                }
-                contacts.unshift(contact);
-            }
-            context.commit('setData',contacts)
-        }).catch((e)=>{
-          alert(e.message)
-        })
-      },
-
-    //FIREBASE通信（コンタクトリスト削除）
-    async deleteData(_,payload){
-      await fetch(`https://profile-site-a91ed-default-rtdb.firebaseio.com/contact/${payload}.json`,{
-        method:"DELETE",
+export default {
+  //FIREBASE通信（コンタクトデータ送信）
+  async submitData(_, payload) {
+    const response = await fetch(
+      "https://profile-site-a91ed-default-rtdb.firebaseio.com/contact.json",
+      {
+        method: "POST",
         headers: {
-            "Content-Type": "application/json",
-          },
-      }).then((response)=>{
-        console.log("1")
-        if(!response.ok){
-          throw new Error('サーバーへの通信に失敗しました')
-        }else{
-          return response.json();
-        }
-      }).catch((e)=>{
-        alert(e.message)
-      })
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+    if (response.ok) {
+      console.log(response);
+      alert("送信完了しました。");
+    } else {
+      const error = new Error("サーバーへの送信に失敗しました")
+      throw error;
     }
-}
+  },
+
+  //FIREBASE通信（コンタクトリスト取得）
+  async getData(context) {
+    const token =context.rootGetters['auth/token']
+    // const token=localStorage.getItem('token');
+    const response = await fetch(
+      "https://profile-site-a91ed-default-rtdb.firebaseio.com/contact.json?auth="+token,
+      { method: "GET" }
+    );
+    const responseData = await response.json();
+    console.log('Fetchしました。')
+    
+    if (!response.ok) {
+      throw new Error("サーバーへの受信に失敗しました");
+    }
+    console.log(responseData);
+
+    const contacts = [];
+    for (const key in responseData) {
+      const contact = {
+        id: key,
+        date: responseData[key].date,
+        name: responseData[key].name,
+        email: responseData[key].email,
+        message: responseData[key].message,
+      };
+      contacts.unshift(contact);
+    }
+    context.commit("setData", contacts);
+  },
+
+  //FIREBASE通信（コンタクトリスト削除）
+  async deleteData(_, payload) {
+    const response = await fetch(
+      `https://profile-site-a91ed-default-rtdb.firebaseio.com/contact/${payload}.json`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log("1");
+    if (!response.ok) {
+      throw new Error("サーバーへの通信に失敗しました");
+    }
+  },
+
+  resetData(context){
+    context.commit('resetData');
+  }
+};

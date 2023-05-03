@@ -7,6 +7,8 @@
         <base-button mode="flat" link to="/about">About/Skills</base-button>
         <base-button mode="flat" link to="/works">Portfolio</base-button>
         <base-button mode="flat" link to="/contact">Contact</base-button>
+        <base-button mode="flat" link to="/user-auth" v-if="!islogined">Login/Signup</base-button>
+        <base-button mode="flat" link to="/user-auth" v-else @click="logout">Logout</base-button>
       </nav>
       <div class="hamBtn" @click="open = !open" :class="{'is-active' : open}">
         <span></span>
@@ -20,6 +22,8 @@
             <base-button mode="flat" link to="/about" @click="open = !open">About/Skills</base-button>
             <base-button mode="flat" link to="/works" @click="open = !open">Portfolio</base-button>
             <base-button mode="flat" link to="/contact" @click="open = !open">Contact</base-button>
+            <base-button mode="flat" link to="/user-auth" @click="open = !open" v-if="!islogined">Login/Signup</base-button>
+            <base-button mode="flat" link to="/user-auth" @click="open = !open" v-else>Logout</base-button>
         </nav>
     </div>
   </section>
@@ -32,6 +36,17 @@ export default {
       open: false,
     };
   },
+  computed:{
+    islogined(){
+      return this.$store.getters['auth/isAuthenticated']
+    }
+  },
+  methods:{
+    logout(){
+      this.$store.dispatch('auth/logout');
+      this.$store.dispatch('contacts/resetData')
+    }
+  }
 };
 </script>
 
@@ -110,7 +125,7 @@ h1{
 .hamBtn span:last-child {
     top: 35.5px;
 }
-@media (max-width: 690px) {
+@media (max-width: 850px) {
     .hamBtn{
         display: block;
     }

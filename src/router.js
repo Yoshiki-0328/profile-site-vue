@@ -6,6 +6,7 @@ const AboutPage = defineAsyncComponent(()=>import('./pages/AboutPage.vue'))
 const WorksPage = defineAsyncComponent(()=>import('./pages/WorksPage.vue'))
 const ContactPage = defineAsyncComponent(()=>import('./pages/ContactPage.vue'))
 const ContactList = defineAsyncComponent(()=>import('./pages/ContactList.vue'))
+const UserAuth = defineAsyncComponent(()=>import('./pages/UserAuth.vue'))
 import TheFooter from './components/layout/TheFooter.vue'
 
 
@@ -22,6 +23,7 @@ const router = createRouter({
       components:{default:ContactPage,footer:TheFooter}},
       {path:'/contact-list',
       components:{default:ContactList,footer:TheFooter}},
+      {path:'/user-auth',component:UserAuth},
       {path:'/notFound(.*)',redirect:'/profile'}
     ],
     linkActiveClass:'active'

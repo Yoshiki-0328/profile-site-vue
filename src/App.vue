@@ -3,12 +3,12 @@
     <the-header></the-header>
     <base-spinner v-if="isLoading"></base-spinner>
     <main v-else>
-      <router-view v-slot="slotProps">
+      <router-view name="default" v-slot="slotProps">
         <transition name="route" mode="out-in">
           <component :is="slotProps.Component"></component>
         </transition>
       </router-view>
-      <router-view name="footer"></router-view>
+      <router-view v-if="footerVisible" name="footer"></router-view>
     </main>
   </div>
 </template>
@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       isLoading:true,
+      footerVisible:false,
     }
   },
   beforeCreate(){
@@ -31,8 +32,14 @@ export default {
   },
   mounted(){
     setTimeout(()=>{
-      this.isLoading=false;
+      this.isLoading= false;
     },1000)
+    setTimeout(()=>{
+      this.footerVisible=true
+    },2000)
+  },
+  created(){
+    this.$store.dispatch('auth/trylogin')
   }
 };
 </script>
